@@ -1,5 +1,5 @@
 {
-    "name": "immediate/im-tag-cloud",
+    "name": "immediate-media/im-tag-cloud",
     "description": "Wordpress plugin with a tag cloud.",
     "type": "wordpress-plugin",
     "license": "proprietary",
