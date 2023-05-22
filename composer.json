@@ -1,0 +1,60 @@
+{
+    "name": "immediate/im-tag-cloud",
+    "description": "Wordpress plugin with a tag cloud.",
+    "type": "wordpress-plugin",
+    "license": "proprietary",
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require": {
+        "php": ">=7.4 || >=8.0",
+        "immediate/im-wp-plugin": "^2.0"
+    },
+    "require-dev": {
+        "10up/wp_mock": "^0.5",
+        "allure-framework/allure-phpunit": "^1.5",
+        "doctrine/annotations": "1.*",
+        "overtrue/phplint": "^3.2",
+        "phpmd/phpmd": "^2.12",
+        "phpunit/phpunit": "^9.5",
+        "roave/security-advisories": "dev-latest",
+        "squizlabs/php_codesniffer": "^3.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "IM\\Fabric\\Plugin\\TagCloud\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "IM\\Fabric\\Plugin\\TagCloud\\Test\\": "tests/"
+        }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.immediate.co.uk:WCP-Packages/im-wp-plugin.git"
+        },
+        {
+            "type": "vcs",
+            "url": "git@github.immediate.co.uk:WCP-Packages/im-fabric-wordpress.git"
+        }
+    ],
+    "scripts": {
+        "check-coverage": "vendor/bin/phpunit --coverage-html build --whitelist src && open build/index.html",
+        "run-tests": "composer run-phpunit && composer run-phpcs && composer run-phpmd && composer run-phplint",
+        "run-phpunit": "vendor/bin/phpunit",
+        "run-phpcs": "vendor/bin/phpcs",
+        "run-phplint": "vendor/bin/phplint",
+        "run-phpmd": "vendor/bin/phpmd src text phpmd-src.xml && vendor/bin/phpmd tests text phpmd-tests.xml"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "platform": {
+            "php": "7.4"
+        },
+        "preferred-install": {
+            "*": "dist"
+        },
+        "sort-packages": true
+    }
+}
