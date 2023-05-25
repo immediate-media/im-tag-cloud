@@ -13,9 +13,6 @@ jobs:
         name: Checkout
         uses: actions/checkout@v3
       -
-        name: Set up QEMU
-        uses: docker/setup-qemu-action@v2
-      -
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
       -
@@ -31,5 +28,5 @@ jobs:
         name: Run Static Analysis
         run: docker run -id php-docker composer run-tests
 
-# Local equivalent (assumes prior COMPOSER_AUTH export)):
-# docker buildx build --secret id=COMPOSER_AUTH -f docker/Dockerfile -t php-docker .;  docker run -it php-docker composer run-tests
+# Local equivalent (assumes prior COMPOSER_AUTH export):
+# $ docker buildx build --secret id=COMPOSER_AUTH -f docker/Dockerfile -t php-docker .;  docker run -it php-docker composer run-tests
