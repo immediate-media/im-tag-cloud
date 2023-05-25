@@ -20,10 +20,10 @@ jobs:
         run: docker run -itd --name php-docker php-docker
       -
         name: Run Composer Install
-        run: docker exec -it php-docker composer update --prefer-dist --no-interaction
+        run: docker exec -i php-docker composer update --prefer-dist --no-interaction
       -
         name: Run Static Analysis
-        run: docker exec -it php-docker composer run-tests
+        run: docker exec -i php-docker composer run-tests
       -
         name: Tidy up
         run: docker stop php-docker && docker rm php-docker
