@@ -1,0 +1,17 @@
+name: (Template) Run Static Analysis
+
+on:
+  workflow_dispatch:
+  workflow_call:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - 
+        name: Checkout
+        uses: actions/checkout@v3
+      -
+        name: Build Docker Test Container
+        run: docker run --rm -iv $(pwd):/var/www/html ghcr.io/immediatemediaco/php:8.0-composer-tests sh -c sh -c "echo '$COMPOSER_AUTH' >> ~/.composer/auth.json && composer update --prefer-dist --no-interaction && composer run-tests"
