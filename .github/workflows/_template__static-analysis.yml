@@ -9,9 +9,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - 
+      -
         name: Checkout
         uses: actions/checkout@v3
       -
         name: Build Docker Test Container
-        run: docker run --rm -iv $(pwd):/var/www/html ghcr.io/immediatemediaco/php:8.1-composer-tests sh -c sh -c "echo '$COMPOSER_AUTH' >> ~/.composer/auth.json && composer update --prefer-dist --no-interaction && composer run-tests"
+        run: docker build --build-arg "COMPOSER_AUTH=${COMPOSER_AUTH}" -t php-docker -f ./docker/Dockerfile .
+      -
+        name: Boot Docker Test Container
+        run: docker run -itd --name php-docker php-docker
+      -
+        name: Run Composer Install
+        run: docker exec -it php-docker composer update --prefer-dist --no-interaction
+      -
+        name: Run Static Analysis
+        run: docker exec -it php-docker composer run-tests
+      -
+        name: Tidy up
+        run: docker stop php-docker && docker rm php-docker
