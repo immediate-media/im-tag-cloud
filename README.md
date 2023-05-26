@@ -18,8 +18,7 @@ Two options exist when running these tests locally:
 - Ensure that your environment has the correct version of PHP (and/or extensions) setup
 - Run via docker
 
-NB: Both options require you to have set up a `COMPOSER_AUTH` environment variable in order to allow composer access to our private packages
-NB2: You will also need to be on the VPN
+Note that both options require you to have set up a `COMPOSER_AUTH` environment variable in order to allow composer access to our private packages and that you will need to be on the VPN
 
 To run the checks on the host system directly run:
 - `$ composer update`
