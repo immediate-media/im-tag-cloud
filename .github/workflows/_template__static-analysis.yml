@@ -27,6 +27,3 @@ jobs:
       -
         name: Run Static Analysis
         run: docker run -id php-docker composer run-tests
-
-# Local equivalent (assumes prior COMPOSER_AUTH export):
-# $ docker buildx build --secret id=COMPOSER_AUTH -f docker/Dockerfile -t php-docker .;  docker run -it php-docker composer run-tests
