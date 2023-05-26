@@ -2,7 +2,13 @@ name: (Template) Run Static Analysis
 
 on:
   workflow_dispatch:
+    secrets:
+      COMPOSER_AUTH:
+        required: true
   workflow_call:
+    secrets:
+      COMPOSER_AUTH:
+        required: true
 
 jobs:
   build:
