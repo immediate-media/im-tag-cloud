@@ -23,11 +23,13 @@ jobs:
           file: ./docker/Dockerfile
           tags: php-docker
           secrets: |
-            "COMPOSER_AUTH=${{ secrets.COMPOSER_AUTH }}"
             "FOO=${{ secrets.FOO }}"
+      -
+        name: Check not-secret.txt value
+        run: docker run -id php-docker cat not-secret.txt
+
+      #     secrets: |
+      #       "COMPOSER_AUTH=${{ secrets.COMPOSER_AUTH }}"
       # -
       #   name: Run Static Analysis
       #   run: docker run -id php-docker composer run-tests
-      -
-          name: Check not-secret.txt value
-          run: docker run -id php-docker cat not-secret.txt
