@@ -19,7 +19,7 @@ jobs:
         uses: docker/setup-buildx-action@v2
       -
         name: Create auth.json (to avoid complex json escaping)
-        run: echo '${{ secrets.COMPOSER_AUTH }}' > $GITHUB_WORKSPACE/auth.json
+        run: echo '${{ secrets.COMPOSER_AUTH }}' > ./auth.json
       -
         name: Build Docker Test Container
         uses: docker/build-push-action@v4
@@ -28,7 +28,7 @@ jobs:
           file: ./docker/Dockerfile
           tags: php-docker
           secret-files: |
-            "COMPOSER_AUTH=$GITHUB_WORKSPACE/auth.json"
+            "COMPOSER_AUTH=./auth.json"
       -
         name: Run Static Analysis
         run: docker run -id php-docker composer run-tests
