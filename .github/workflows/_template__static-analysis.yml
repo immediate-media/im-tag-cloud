@@ -18,14 +18,17 @@ jobs:
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
       -
+        name: Create auth.json (to avoid complex json escaping)
+        run: echo '${{ secrets.COMPOSER_AUTH }}' > $GITHUB_WORKSPACE/auth.json
+      -
         name: Build Docker Test Container
         uses: docker/build-push-action@v4
         with:
           context: .
           file: ./docker/Dockerfile
           tags: php-docker
-          secrets: |
-            "COMPOSER_AUTH=${{ secrets.COMPOSER_AUTH }}"
+          secret-files: |
+            "COMPOSER_AUTH=$GITHUB_WORKSPACE/auth.json"
       -
         name: Run Static Analysis
         run: docker run -id php-docker composer run-tests
