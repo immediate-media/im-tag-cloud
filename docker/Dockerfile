@@ -7,4 +7,7 @@ WORKDIR /home/www-data/app
 RUN touch /home/www-data/app/not-secret.txt
 
 RUN --mount=type=secret,id=COMPOSER_AUTH,target=/root/.composer/auth.json \
+    cat /root/.composer/auth.json
+
+RUN --mount=type=secret,id=COMPOSER_AUTH,target=/root/.composer/auth.json \
     composer update --no-scripts --no-progress --no-interaction --prefer-dist
