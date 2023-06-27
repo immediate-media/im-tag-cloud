@@ -28,7 +28,8 @@ class LayoutComponentFactory
 
     private function getTaxonomies(): array
     {
-        $taxonomies = get_taxonomies([], 'objects');
+        $taxonomies = get_taxonomies(['public' => true], 'objects');
+        unset($taxonomies['category']);
         return array_map(function ($taxonomy) {
             return $taxonomy->label;
         }, $taxonomies);
